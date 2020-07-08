@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+  </head>
+  <body>
+
+    <form th:action="@{/guardarContribuyente}" th:object="${contribuyente}" method="post"> 
+     
+     <h1>Nuevo contribuyente</h1>
+     <button type="submit" >Guardar</button>
+     <a th:href="@{/listado}" role="button">Ver registros</a>
+   
+       
+         <label for="nombre" class="mb-1">Nombre</label>
+         <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre">
+         <small th:errors="*{nombre}" style="color: #FF0000"></small>
+
+       
+         <label for="apellido" class="mb-1">Apellido</label>
+         <input type="text" class="form-control" th:field="*{apellido}" id="apellido" name="apellido">
+         <small th:errors="*{apellido}" style="color: #FF0000"></small>              
+ 
+     
+         <label for="nit" >NIT</label>
+         <input type="text" class="form-control" th:field="*{nit}" id="nit" name="nit">
+         <small th:errors="*{nit}" style="color: #FF0000"></small> 
+ 
+       
+  <label for="importancia">Importancia</label>
+  <select th:field="*{importancia.codigoImportancia}" class="form-control" id="importancia">
+          <option th:each="importancia, row: ${importancias}" th:value="${importancia.codigoImportancia}" th:text="${importancia.importancia}"></option>
+      </select>
+
+     </form>
+  
+  </body>
+</html>
